@@ -1,40 +1,3 @@
-// Medidate
-// ===
-//
-// This is a utility to help make managing user agent focus a little easier! The
-// basic premise is that this utility helps keep track of focus history for when
-// complex interaction occurs that require focus to move across the DOM in ways
-// that make sense visually, but don't make sense in DOM structural.
-//
-//
-// Example Use Cases
-// ---
-//
-// * Clicking a button that opens a Modal. Focus should go to the modal. On
-//   close, focus should return to the original button.
-// * Opening an accordion. Focus should go to the opened item's content
-//   container. On close, focus should return to the original clickable bellow
-//   item link.
-// * Toolips
-// * Complex navigation widgets (i.e. Navitron). Hitting "Back", focus should
-//   return to the previous container in the hierarchy tree.
-//
-// Regardless of the interactions, focus management should be separate and
-// agnostic to the structure of the DOM elements.
-//
-// It is up to the user (or rather, developer) to ensure that the use cases are
-// correctly managed, and that focus management states are returned at all
-// appropriate times. For example, remember edge-case interactions like "after
-// hitting the escape key to close a modal" or "click out of the modal with a
-// mouse" should return focus to its appropriate state.
-//
-//
-// TODO
-// ---
-//
-// - [ ] Implement/follow singleton pattern
-// - [ ] Remove "Expose!" code at the bottom and just return FocusManager
-
 (function(factory) {
     if (typeof define === 'function' && define.amd) {
         define(['$'], factory);
@@ -58,7 +21,7 @@
     FocusManager.VERSION = '1.0.0';
 
 
-    // the stack (of memories)!
+    // The stack (of memories)!
     var stack = [
         // Memory 1 { cache: $(), context: 'thing1' },
         // Memory 2 { cache: $(), context: 'thing1' }
@@ -66,7 +29,7 @@
 
 
     /**
-     * Initializes descript, ensuring a Singleton instance.
+     * Initializes FocusManager, ensuring a Singleton instance.
      * @returns {*|FocusManager}
      */
     FocusManager.init = function() {
@@ -75,9 +38,10 @@
 
 
     /**
-     * Adds an element to the focus stack
+     * Adds an element to the memory stack
      * @param $element: a single DOM node or jQuery object
-     * @param context: a string to give the stored DOM/jQuery object a context
+     * @param context: [optional] a string to give the stored DOM/jQuery object
+     *                 a context
      * @return {jQuery Object}
      */
     FocusManager.prototype.store = function($element, context) {
@@ -95,7 +59,7 @@
     /**
      * Pops the stack then sets focus to what was the last element in the
      * stack array.
-     * @param context: [option] restores a specific context from the stack
+     * @param context: [optional] restores a specific context from the stack
      //                instead of the last memory on the stack
      * @return {jQuery Object}
      */
