@@ -4,7 +4,19 @@ Manage browser focus using a simple API.
 
 __Current Version__: 1.0.0
 
-__Focus Manager__ allows you to manage browser focus via an easy to use Javascript API. It's features include:
+__Focus Manager__ allows you to manage browser focus via an easy to use Javascript API.
+
+This is a utility to help make managing user agent focus a little easier! The basic premise is that this utility helps keep track of focus history for when complex interaction occurs that require focus to move across the DOM in ways that make sense visually, but don't make sense in DOM structurally
+
+## Example Use Cases
+
+* Opening a modal
+* Opening an accordion
+* Toolips
+* Complex tree structures (i.e. multi-branching navigation)
+
+
+## Basic Features
 
 1. Store a DOM element to eventually return focus to
 2. Send focus to any DOM element
@@ -14,6 +26,8 @@ __Focus Manager__ allows you to manage browser focus via an easy to use Javascri
 ## Quickstart
 
 Install `focusManager` using bower (WIP)
+
+Using Require.js, require `focusManager` into your project.
 
 Initialize in your view:
 
